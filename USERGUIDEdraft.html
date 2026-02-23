@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Pengguna Odoo Asiantex - Full User Training Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sidebar-link { 
+            transition: all 0.2s ease; 
+            border-left: 3px solid transparent; 
+            cursor: pointer; 
+            font-weight: 500;
+        }
+
+        .sidebar-link.active { 
+            background-color: #f8fafc; 
+            color: #1e40af; 
+            border-left-color: #1e40af; 
+            font-weight: 800; 
+        }
+
+        .content-section { display: none; }
+        .content-section.active { display: block; animation: fadeIn 0.6s ease-out; }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .screenshot-container { 
+            background-color: #f1f5f9; 
+            border-radius: 24px; 
+            margin: 40px 0; 
+            overflow: hidden; 
+            border: 1px solid #e2e8f0; 
+            position: relative; 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .screenshot-container img { 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            object-fit: cover; 
+            display: block; 
+            background: #cbd5e1; 
+        }
+
+        .img-label { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: rgba(15, 23, 42, 0.95); 
+            color: white; 
+            padding: 14px 24px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+        }
+
+        .step-card { 
+            background: white; 
+            padding: 3rem; 
+            border-radius: 2rem; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); 
+            margin-bottom: 4rem; 
+            border: 1px solid #f1f5f9; 
+        }
+
+        .important-note { 
+            background: #fffbeb; 
+            border-left: 6px solid #f59e0b; 
+            padding: 2.5rem; 
+            border-radius: 1.25rem; 
+            margin: 3.5rem 0; 
+        }
+
+        .badge-step { 
+            background: #1e40af; 
+            color: white; 
+            padding: 8px 18px; 
+            border-radius: 12px; 
+            font-size: 12px; 
+            font-weight: 800; 
+            margin-bottom: 24px; 
+            display: inline-block; 
+            letter-spacing: 0.5px;
+        }
+
+        code { 
+            background: #eff6ff; 
+            padding: 3px 8px; 
+            border-radius: 6px; 
+            font-family: 'JetBrains Mono', monospace; 
+            font-weight: 700; 
+            color: #1e40af; 
+            font-size: 0.9em;
+        }
+
+        .step-number { 
+            background: #1e40af; 
+            color: white; 
+            width: 28px; 
+            height: 28px; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 50%; 
+            font-size: 13px; 
+            font-weight: 800; 
+            margin-right: 16px; 
+            flex-shrink: 0; 
+        }
+
+        .step-item { 
+            display: flex; 
+            align-items: flex-start; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.75;
+        }
+
+        .sub-step-box {
+            margin-left: 3rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sub-step-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+        }
+
+        .sidebar-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 0 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .lang-toggle {
+            display: flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .lang-btn {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 800;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #64748b;
+        }
+        .lang-btn.active {
+            background: white;
+            color: #1e40af;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 text-base leading-relaxed">
+
+    <header class="lg:hidden bg-slate-900 text-white p-5 flex justify-between items-center sticky top-0 z-50 shadow-2xl">
+        <h1 class="font-black tracking-tighter text-xl uppercase">Asiantex Odoo</h1>
+        <button id="menuToggle" class="p-2"><i class="fas fa-bars text-2xl"></i></button>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 bg-white w-80 border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 z-40 lg:sticky lg:top-0 lg:h-screen overflow-y-auto shadow-sm">
+            <div class="p-8">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="bg-blue-600 p-3.5 rounded-2xl text-white shadow-xl shadow-blue-100">
+                        <i class="fas fa-microchip text-2xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-black text-slate-900 leading-none text-xl tracking-tighter">ASIANTEX</h2>
+                        <p class="text-[10px] text-blue-600 font-extrabold tracking-[0.3em] uppercase mt-1">User Guide v1.0</p>
+                    </div>
+                </div>
+
+                <div class="lang-toggle">
+                    <div onclick="setLanguage('en')" id="btn-en" class="lang-btn active">ENGLISH</div>
+                    <div onclick="setLanguage('id')" id="btn-id" class="lang-btn">BAHASA</div>
+                </div>
+
+                <nav class="space-y-1">
+                    <p class="sidebar-title" data-en="Basic Info" data-id="Informasi Dasar">Basic Info</p>
+                    <a onclick="showSection('intro')" class="sidebar-link active flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50">
+                        <i class="fas fa-info-circle w-5"></i> <span data-en="Introduction" data-id="Pendahuluan">Introduction</span>
+                    </a>
+                    
+                    <p class="sidebar-title mt-10" data-en="Procurement" data-id="Pembelian">Procurement</p>
+                    <a onclick="showSection('purchase-po')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-emerald-600">
+                        <i class="fas fa-shopping-cart w-5"></i> <span data-en="1. Purchase Order" data-id="1. Purchase Order">1. Purchase Order</span>
+                    </a>
+                    <a onclick="showSection('purchase-maklon')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-teal-600">
+                        <i class="fas fa-sync w-5"></i> <span data-en="2. Maklon Process" data-id="2. Proses Maklon">2. Maklon Process</span>
+                    </a>
+
+                    <p class="sidebar-title mt-10" data-en="Production & Sales" data-id="Produksi & Jual">Production & Sales</p>
+                    <a onclick="showSection('manufacturing')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-purple-600">
+                        <i class="fas fa-industry w-5"></i> <span data-en="3. Manufacturing (MO)" data-id="3. Produksi (MO)">3. Manufacturing (MO)</span>
+                    </a>
+                    <a onclick="showSection('sales')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-blue-600">
+                        <i class="fas fa-tag w-5"></i> <span data-en="4. Sales Process" data-id="4. Proses Jual">4. Sales Process</span>
+                    </a>
+
+                    <p class="sidebar-title mt-10" data-en="Inventory" data-id="Inventaris">Inventory</p>
+                    <a onclick="showSection('replenishment')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-orange-600">
+                        <i class="fas fa-truck-moving w-5"></i> <span data-en="5. Replenishment" data-id="5. Stok Ulang">5. Replenishment</span>
+                    </a>
+                    <a onclick="showSection('factory-delivery')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-amber-600">
+                        <i class="fas fa-warehouse w-5"></i> <span data-en="6. Factory Delivery" data-id="6. Pengiriman Pabrik">6. Factory Delivery</span>
+                    </a>
+                    <a onclick="showSection('scrap')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-rose-600">
+                        <i class="fas fa-dumpster w-5"></i> <span data-en="7. Scrap Process" data-id="7. Proses Scrap">7. Scrap Process</span>
+                    </a>
+                    <a onclick="showSection('inventory-adj')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-amber-600">
+                        <i class="fas fa-clipboard-check w-5"></i> <span data-en="8. Inv Adjustment" data-id="8. Penyesuaian Stok">8. Inv Adjustment</span>
+                    </a>
+
+                    <p class="sidebar-title mt-10" data-en="System" data-id="Sistem">System</p>
+                    <a onclick="showSection('accounting')" class="sidebar-link flex items-center gap-4 px-5 py-3.5 rounded-2xl text-sm hover:bg-slate-50 text-indigo-600">
+                        <i class="fas fa-file-invoice-dollar w-5"></i> <span data-en="9. Finance & Security" data-id="9. Keuangan & Keamanan">9. Finance & Security</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 min-h-screen">
+            <div class="max-w-4xl mx-auto p-8 lg:p-20">
+                
+                <!-- Section: Intro -->
+                <div id="intro" class="content-section active">
+                    <h1 class="text-6xl font-black text-slate-900 mb-10 tracking-tighter" data-en="Introduction" data-id="Pendahuluan">Introduction</h1>
+                    <div class="important-note shadow-sm border border-orange-100">
+                        <h3 class="font-bold text-orange-950 text-xl mb-4 italic underline underline-offset-4" data-en="Asiantex Odoo Integration Vision" data-id="Visi Integrasi Odoo Asiantex">Asiantex Odoo Integration Vision</h3>
+                        <p class="text-orange-900 text-lg leading-relaxed" data-en="Odoo is not just a recording application, it is the company's nervous system. At Asiantex, every fabric movement (Gray, Semi-Finish, Finish Good) must be physically and digitally validated so that financial reports (Profit & Loss & Balance Sheet) are formed automatically without excessive manual intervention." data-id="Odoo bukan sekadar aplikasi pencatatan, melainkan sistem saraf perusahaan. Di Asiantex, setiap pergerakan kain (Gray, Semi-Finish, Finish Good) harus tervalidasi secara fisik dan digital agar laporan keuangan (Laba Rugi & Neraca) terbentuk secara otomatis tanpa intervensi manual yang berlebihan.">Odoo is not just a recording application, it is the company's nervous system. At Asiantex, every fabric movement (Gray, Semi-Finish, Finish Good) must be physically and digitally validated so that financial reports (Profit & Loss & Balance Sheet) are formed automatically without excessive manual intervention.</p>
+                    </div>
+                    <div class="screenshot-container shadow-sm border border-slate-200">
+                        <img src="intro_diagram.png" alt="Integrasi" onerror="this.src='https://placehold.co/1200x675/1e293b/ffffff?text=Integrasi+Asiantex+Odoo+18'">
+                        <div class="img-label" data-en="Fig 1.1: Asiantex Inter-Departmental Integration Map" data-id="Gbr 1.1: Peta Alur Integrasi Antar Departemen Asiantex">Fig 1.1: Asiantex Inter-Departmental Integration Map</div>
+                    </div>
+                </div>
+
+                <!-- 1. Purchase Order -->
+                <div id="purchase-po" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-emerald-700">1. Purchase Order (PO) <br><span class="text-slate-400 font-medium text-3xl" data-en="Buying or Restocking Goods" data-id="Pembelian atau Restock Barang">Buying or Restocking Goods</span></h1>
+                    
+                    <div class="step-card">
+                        <div class="badge-step" data-en="WORKFLOW" data-id="ALUR KERJA">WORKFLOW</div>
+                        <div class="space-y-4 text-slate-700">
+                            <div class="step-item"><span class="step-number">1</span><p data-en="Navigate to Purchase -> Orders -> Purchase Orders." data-id="Buka menu Purchase -> Orders -> Purchase Orders.">Navigate to <code>Purchase -> Orders -> Purchase Orders</code>.</p></div>
+                            <div class="step-item"><span class="step-number">2</span><p data-en="Click New." data-id="Klik New.">Click <strong>New</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">3</span><p data-en="Select the Vendor." data-id="Pilih Vendor.">Select the <strong>Vendor</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">4</span><p data-en="(Optional) Enter the Vendor Reference if there is a reference you want to add to the PO (e.g., saving the vendor's delivery note number, etc.)." data-id="(Opsional) Masukkan Vendor Reference jika ada referensi yang ingin ditambahkan ke PO (misal: nomor surat jalan vendor, dll)."><em>(Optional)</em> Enter the <strong>Vendor Reference</strong> if there is a reference you want to add to the PO (e.g., saving the vendor's delivery note number, etc.).</p></div>
+                            <div class="step-item"><span class="step-number">5</span><p data-en="Select the items you wish to buy using one of two options:" data-id="Pilih item yang ingin dibeli menggunakan salah satu dari dua pilihan:">Select the items you wish to buy using one of two options:</p></div>
+                            
+                            <div class="sub-step-box bg-slate-50 border-slate-200">
+                                <div class="sub-step-item">
+                                    <i class="fas fa-plus-circle text-emerald-500"></i>
+                                    <p data-en="Click Add a product and type the item name." data-id="Klik Add a product dan ketik nama item.">Click <strong>Add a product</strong> and type the item name.</p>
+                                </div>
+                                <div class="sub-step-item">
+                                    <i class="fas fa-book-open text-emerald-500"></i>
+                                    <p data-en="Click Catalog, select your items, fill in the quantity, then click Back to Quotation." data-id="Klik Catalog, pilih item, isi kuantitas, lalu klik Back to Quotation.">Click <strong>Catalog</strong>, select your items, fill in the <strong>quantity</strong>, then click <strong>Back to Quotation</strong>.</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item"><span class="step-number">6</span><p data-en="Click Confirm Order." data-id="Klik Confirm Order.">Click <strong>Confirm Order</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">7</span><p data-en="Receiving Goods: Once the items are received, click the Receive Product button or the Receipt icon (box in the top center)." data-id="Penerimaan Barang: Setelah barang diterima, klik tombol Receive Product atau ikon Receipt (kotak di atas tengah)."><strong>Receiving Goods:</strong> Once the items are received, click the <strong>Receive Product</strong> button or the <strong>Receipt</strong> icon (box in the top center).</p></div>
+                            <div class="step-item"><span class="step-number">8</span><p data-en="Click Validate if the items have been received." data-id="Klik Validate jika barang sudah diterima.">Click <strong>Validate</strong> if the items have been received.</p></div>
+                            <div class="step-item"><span class="step-number">9</span><p data-en="Click the PO number in the top-left corner to return to the PO page." data-id="Klik nomor PO di pojok kiri atas untuk kembali ke halaman PO.">Click the PO number in the top-left corner to return to the PO page.</p></div>
+                            <div class="step-item"><span class="step-number">10</span><p data-en="Billing Process:" data-id="Proses Penagihan (Billing):"><strong>Billing Process:</strong></p></div>
+                            
+                            <div class="sub-step-box bg-emerald-50 border-emerald-100 text-emerald-900">
+                                <div class="sub-step-item"><i class="fas fa-file-invoice-dollar"></i> <span data-en="If you want to create a bill, click Create Bill." data-id="Jika ingin membuat tagihan, klik Create Bill.">If you want to create a bill, click <strong>Create Bill</strong>.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-calendar-alt"></i> <span data-en="Enter the Bill Date." data-id="Masukkan Bill Date.">Enter the <strong>Bill Date</strong>.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-check-double"></i> <span data-en="Click Confirm." data-id="Klik Confirm.">Click <strong>Confirm</strong>.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-credit-card"></i> <span data-en="If the bill is paid, click Pay and then Create Payment." data-id="Jika tagihan dibayar, klik Pay lalu Create Payment.">If the bill is paid, click <strong>Pay</strong> and then <strong>Create Payment</strong>.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-print"></i> <span data-en="If you want to print the bill, click Print." data-id="Jika ingin cetak tagihan, klik Print.">If you want to print the bill, click <strong>Print</strong>.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="purchase-maklon" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-teal-700">2. Purchase Order (PO) <br><span class="text-slate-400 font-medium text-3xl" data-en="Fabric Processing (Maklon)" data-id="Pemrosesan Kain (Maklon)">Fabric Processing (Maklon)</span></h1>
+                    
+                    <div class="step-card">
+                        <div class="badge-step" data-en="SPECIALIZED STEPS" data-id="TAHAPAN KHUSUS">SPECIALIZED STEPS</div>
+                        <div class="space-y-4 text-slate-700">
+                            <div class="step-item"><span class="step-number">1</span><p data-en="Navigate to Purchase -> Orders -> Purchase Orders and click New." data-id="Buka Purchase -> Orders -> Purchase Orders dan klik New.">Navigate to <code>Purchase -> Orders -> Purchase Orders</code> and click <strong>New</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">2</span><p data-en="Select Setia Busanatex as the Vendor." data-id="Pilih Setia Busanatex sebagai Vendor.">Select <strong>Setia Busanatex</strong> as the Vendor.</p></div>
+                            <div class="step-item"><span class="step-number">3</span><p data-en="Enter the Vendor Reference if there is a reference you want to add to the PO." data-id="Masukkan Vendor Reference jika ada referensi yang ingin ditambahkan ke PO.">Enter the <strong>Vendor Reference</strong> if there is a reference you want to add to the PO.</p></div>
+                            <div class="step-item"><span class="step-number">4</span><p data-en="Select the item KAIN GREY using one of two options:" data-id="Pilih item KAIN GREY menggunakan salah satu dari dua pilihan:">Select the item <strong>KAIN GREY</strong> using one of two options:</p></div>
+                            
+                            <div class="sub-step-box bg-slate-50 border-slate-200">
+                                <div class="sub-step-item">
+                                    <i class="fas fa-plus text-slate-400"></i>
+                                    <p data-en="Click Add a product and type the item name." data-id="Klik Add a product dan ketik nama item.">Click <strong>Add a product</strong> and type the item name.</p>
+                                </div>
+                                <div class="sub-step-item">
+                                    <i class="fas fa-th text-slate-400"></i>
+                                    <p data-en="Click Catalog, select the item, fill in the quantity, then click Back to Quotation." data-id="Klik Catalog, pilih item, isi kuantitas, lalu klik Back to Quotation.">Click <strong>Catalog</strong>, select the item, fill in the <strong>quantity</strong>, then click <strong>Back to Quotation</strong>.</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item"><span class="step-number">5</span><p data-en="Click Confirm Order." data-id="Klik Confirm Order.">Click <strong>Confirm Order</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">6</span><p data-en="Sending Materials: If the grey fabric has been sent from the shop to the maklon factory (Setia Busanatex), click the Resupply box (top center)." data-id="Pengiriman Bahan: Jika kain grey sudah dikirim dari toko ke pabrik maklon (Setia Busanatex), klik kotak Resupply (atas tengah)."><strong>Sending Materials:</strong> If the grey fabric has been sent from the shop to the maklon factory (Setia Busanatex), click the <strong>Resupply</strong> box (top center).</p></div>
+                            <div class="step-item"><span class="step-number">7</span><p data-en="Click Validate if the items have been sent." data-id="Klik Validate jika barang sudah dikirim.">Click <strong>Validate</strong> if the items have been sent.</p></div>
+                            <div class="step-item"><span class="step-number">8</span><p data-en="Click the PO number in the top-left corner to return to the PO page." data-id="Klik nomor PO di pojok kiri atas untuk kembali ke halaman PO.">Click the PO number in the top-left corner to return to the PO page.</p></div>
+                            <div class="step-item"><span class="step-number">9</span><p data-en="Receiving Finished Goods: If the maklon factory has sent back the dyed fabric, click the Receive Product button or the Receipt icon (top center)." data-id="Penerimaan Barang Jadi: Jika pabrik maklon mengirim balik kain celup, klik tombol Receive Product atau ikon Receipt (atas tengah)."><strong>Receiving Finished Goods:</strong> If the maklon factory has sent back the dyed fabric, click the <strong>Receive Product</strong> button or the <strong>Receipt</strong> icon (top center).</p></div>
+                            <div class="step-item"><span class="step-number">10</span><p data-en="Click Validate if the items have been received." data-id="Klik Validate jika barang sudah diterima.">Click <strong>Validate</strong> if the items have been received.</p></div>
+                            <div class="step-item"><span class="step-number">11</span><p data-en="Click the PO number in the top-left corner to return to the PO page." data-id="Klik nomor PO di pojok kiri atas untuk kembali ke halaman PO.">Click the PO number in the top-left corner to return to the PO page.</p></div>
+                            <div class="step-item"><span class="step-number">12</span><p data-en="Service Fees: If the costs for dyeing services and chemical colors are known, add these products to the PO:" data-id="Biaya Jasa: Jika biaya jasa celup dan chemical warna sudah diketahui, tambahkan produk ini ke PO:"><strong>Service Fees:</strong> If the costs for dyeing services and chemical colors are known, add these products to the PO:</p></div>
+                            
+                            <div class="sub-step-box bg-teal-50 border-teal-100 text-teal-900">
+                                <div class="sub-step-item">
+                                    <i class="fas fa-plus-square"></i>
+                                    <p data-en="Select the item JASA CELUP & CHEMICAL WARNA via Add a product or Catalog." data-id="Pilih item JASA CELUP & CHEMICAL WARNA melalui Add a product atau Catalog.">Select the item <strong>JASA CELUP & CHEMICAL WARNA</strong> via <strong>Add a product</strong> or <strong>Catalog</strong>.</p>
+                                </div>
+                                <div class="sub-step-item">
+                                    <i class="fas fa-coins"></i>
+                                    <p data-en="Fill in the quantity and unit price for the fees." data-id="Isi kuantitas dan harga satuan untuk biayanya.">Fill in the <strong>quantity</strong> and <strong>unit price</strong> for the fees.</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item"><span class="step-number">13</span><p data-en="Complete the Bill, Confirm, Pay, and Print process as outlined in the previous section." data-id="Selesaikan proses Bill, Confirm, Pay, dan Print seperti yang dijelaskan di bagian sebelumnya.">Complete the <strong>Bill, Confirm, Pay, and Print</strong> process as outlined in the previous section.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Manufacturing -->
+                <div id="manufacturing" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-purple-700">3. Manufacturing Order (MO) <br><span class="text-slate-400 font-medium text-3xl" data-en="Manufacturing Goods" data-id="Proses Produksi Barang">Manufacturing Goods</span></h1>
+                    
+                    <div class="step-card">
+                        <div class="badge-step" data-en="PRODUCTION STEPS" data-id="TAHAPAN PRODUKSI">PRODUCTION STEPS</div>
+                        <div class="space-y-4 text-slate-700">
+                            <div class="step-item"><span class="step-number">1</span><p data-en="Navigate to Manufacturing -> Operations -> Manufacturing Orders." data-id="Buka Manufacturing -> Operations -> Manufacturing Orders.">Navigate to <code>Manufacturing -> Operations -> Manufacturing Orders</code>.</p></div>
+                            <div class="step-item"><span class="step-number">2</span><p data-en="Click New." data-id="Klik New.">Click <strong>New</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">3</span><p data-en="In the Product section, select the product to be made." data-id="Di bagian Product, pilih produk yang akan dibuat.">In the <strong>Product</strong> section, select the product to be made.</p></div>
+                            <div class="step-item"><span class="step-number">4</span><p data-en="Enter the Quantity (how many items will be produced)." data-id="Masukkan Quantity (jumlah barang yang akan diproduksi).">Enter the <strong>Quantity</strong> (how many items will be produced).</p></div>
+                            <div class="step-item"><span class="step-number">5</span><p data-en="Ensure the Bill Of Material (BoM) is filled, matching the type of product being made." data-id="Pastikan Bill Of Material (BoM) terisi, sesuai dengan jenis produk yang dibuat.">Ensure the <strong>Bill Of Material (BoM)</strong> is filled, matching the type of product being made.</p></div>
+                            <div class="step-item"><span class="step-number">6</span><p data-en="Click Confirm." data-id="Klik Confirm.">Click <strong>Confirm</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">7</span><p data-en="In the Component Status section, ensure the status is Available (indicating all production materials are available). If 'Not Available,' it means items are missing." data-id="Di bagian Component Status, pastikan statusnya Available (artinya semua bahan produksi tersedia). Jika 'Not Available', berarti ada barang yang kurang.">In the <strong>Component Status</strong> section, ensure the status is <strong>Available</strong> (indicating all production materials are available). If "Not Available," it means items are missing.</p></div>
+                            <div class="step-item"><span class="step-number">8</span><p data-en="In the Forecast Component section, you can see the availability status for each specific component." data-id="Di bagian Forecast Component, Anda bisa melihat status ketersediaan untuk setiap komponen spesifik.">In the <strong>Forecast Component</strong> section, you can see the availability status for each specific component.</p></div>
+                            <div class="step-item"><span class="step-number">9</span><p data-en="In the Lot/Serial Number section, enter the production code. If not available yet, type the code and click Create in the Lot/Serial Number column." data-id="Di bagian Lot/Serial Number, masukkan kode produksi. Jika belum ada, ketik kodenya dan klik Create di kolom Lot/Serial Number.">In the <strong>Lot/Serial Number</strong> section, enter the production code. If not available yet, type the code and click <strong>Create</strong> in the Lot/Serial Number column.</p></div>
+                            <div class="step-item"><span class="step-number">10</span><p data-en="Click Produce All to start production." data-id="Klik Produce All untuk memulai produksi.">Click <strong>Produce All</strong> to start production.</p></div>
+                            
+                            <div class="important-note shadow-sm border border-red-100 bg-red-50 py-6 my-6">
+                                <p class="text-red-800 text-base font-bold flex items-center gap-3">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span data-en="Note: Produce All can also be clicked even if components are not available, but it will cause system stock to go negative." data-id="Catatan: Produce All bisa diklik meski komponen tidak tersedia di sistem, tapi akan menyebabkan stok sistem menjadi negatif.">Note: Produce All can also be clicked even if components are not available in the system, but it will cause system stock to go negative.</span>
+                                </p>
+                            </div>
+
+                            <div class="step-item"><span class="step-number">11</span><p data-en="Printing Labels:" data-id="Cetak Label:"><strong>Printing Labels:</strong></p></div>
+                            <div class="sub-step-box bg-slate-50 border-slate-200">
+                                <div class="sub-step-item">
+                                    <i class="fas fa-cog text-slate-400"></i>
+                                    <p data-en="On MO page: Click Gear icon (top left) -> Print -> Label with QR Code." data-id="Di halaman MO: Klik ikon Gear (kiri atas) -> Print -> Label with QR Code."><strong>On MO page:</strong> Click Gear icon (top left) -> <strong>Print</strong> -> <strong>Label with QR Code</strong>.</p>
+                                </div>
+                                <div class="sub-step-item">
+                                    <i class="fas fa-th-list text-slate-400"></i>
+                                    <p data-en="On main list: Check MO number(s), click Print button (top center), select Label with QR Code." data-id="Di daftar utama MO: Centang nomor MO, klik tombol Print (atas tengah), pilih Label with QR Code."><strong>On main list:</strong> Check MO number(s), click Print button (top center), select Label with QR Code.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Sales -->
+                <div id="sales" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-blue-700">4. Sales Process <br><span class="text-slate-400 font-medium text-3xl" data-en="Selling Goods" data-id="Proses Penjualan Barang">Selling Goods</span></h1>
+                    
+                    <div class="step-card">
+                        <div class="badge-step" data-en="SALES FLOW" data-id="ALUR PENJUALAN">SALES FLOW</div>
+                        <div class="space-y-4 text-slate-700">
+                            <div class="step-item"><span class="step-number">1</span><p data-en="Navigate to Sales -> Orders -> Orders." data-id="Buka Sales -> Orders -> Orders.">Navigate to <code>Sales -> Orders -> Orders</code>.</p></div>
+                            <div class="step-item"><span class="step-number">2</span><p data-en="Click New." data-id="Klik New.">Click <strong>New</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">3</span><p data-en="Enter the Customer. Type the customer name; if they don't exist, click Create in the column provided." data-id="Masukkan Customer. Ketik nama pelanggan; jika belum ada, klik Create di kolom yang tersedia.">Enter the <strong>Customer</strong>. Type the customer name; if they don't exist, click <strong>Create</strong> in the column provided.</p></div>
+                            <div class="step-item"><span class="step-number">4</span><p data-en="In the Pricelist section, select the price list for the product. Stock levels will follow the selected pricelist (Shop or Factory)." data-id="Di bagian Pricelist, pilih daftar harga untuk produk tersebut. Tingkat stok akan mengikuti pricelist yang dipilih (Toko atau Pabrik).">In the <strong>Pricelist</strong> section, select the price list for the product. Stock levels will follow the selected pricelist (Shop or Factory).</p></div>
+                            <div class="step-item"><span class="step-number">5</span><p data-en="In the Order Lines section, click Catalog to see the product list." data-id="Di bagian Order Lines, klik Catalog untuk melihat daftar produk.">In the <strong>Order Lines</strong> section, click <strong>Catalog</strong> to see the product list.</p></div>
+                            <div class="step-item"><span class="step-number">6</span><p data-en="Search for the product based on type/variant, click the item, and enter the quantity." data-id="Cari produk berdasarkan tipe/varian, klik item tersebut, dan masukkan kuantitas.">Search for the product based on type/variant, click the item, and enter the <strong>quantity</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">7</span><p data-en="Click Back to Quotation in the top-left corner." data-id="Klik Back to Quotation di pojok kiri atas.">Click <strong>Back to Quotation</strong> in the top-left corner.</p></div>
+                            <div class="step-item"><span class="step-number">8</span><p data-en="Click Confirm." data-id="Klik Confirm.">Click <strong>Confirm</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">9</span><p data-en="Stock Shortage Handling: If the SO contains items with no stock, a confirmation box will appear. You have two options:" data-id="Penanganan Kurang Stok: Jika SO berisi item tanpa stok, kotak konfirmasi akan muncul. Anda punya dua pilihan:"><strong>Stock Shortage Handling:</strong> If the SO contains items with no stock, a confirmation box will appear. You have two options:</p></div>
+                            
+                            <div class="sub-step-box bg-blue-50 border-blue-100 text-blue-900">
+                                <div class="sub-step-item">
+                                    <i class="fas fa-window-close"></i>
+                                    <p data-en="Click Close, then edit the quantity to match available stock or delete out-of-stock items, then click Confirm again." data-id="Klik Close, lalu edit kuantitas sesuai yang tersedia atau hapus item yang kosong, lalu klik Confirm lagi.">Click <strong>Close</strong>, then edit the quantity to match available stock or delete out-of-stock items, then click Confirm again.</p>
+                                </div>
+                                <div class="sub-step-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p data-en="Click Confirm with Available Items Only to continue; the system creates a new SO for remaining items." data-id="Klik Confirm with Available Items Only untuk lanjut dengan stok yang ada; sistem akan membuat SO baru untuk sisa item yang kosong.">Click <strong>Confirm with Available Items Only</strong> to continue; the system creates a new SO for remaining items.</p>
+                                </div>
+                            </div>
+
+                            <div class="step-item"><span class="step-number">10</span><p data-en="Click Delivery (top center)." data-id="Klik Delivery (atas tengah).">Click <strong>Delivery</strong> (top center).</p></div>
+                            <div class="step-item"><span class="step-number">11</span><p data-en="Click Validate when the goods are ready to be sent." data-id="Klik Validate saat barang siap dikirim.">Click <strong>Validate</strong> when the goods are ready to be sent.</p></div>
+                            <div class="step-item"><span class="step-number">12</span><p data-en="Print the Surat Jalan (Delivery Order) or Packing List if required." data-id="Cetak Surat Jalan (Delivery Order) atau Packing List jika diperlukan.">Print the <strong>Surat Jalan (Delivery Order)</strong> or <strong>Packing List</strong> if required.</p></div>
+                            <div class="step-item"><span class="step-number">13</span><p data-en="Click the SO number in the top-left to return to the SO page." data-id="Klik nomor SO di pojok kiri atas untuk kembali ke halaman SO.">Click the SO number in the top-left to return to the SO page.</p></div>
+                            <div class="step-item"><span class="step-number">14</span><p data-en="Invoicing Process:" data-id="Proses Invoicing:"><strong>Invoicing Process:</strong></p></div>
+                            
+                            <div class="sub-step-box bg-slate-900 text-white border-slate-700">
+                                <div class="sub-step-item"><i class="fas fa-plus"></i> <span data-en="Click Create Invoice -> Select Regular Invoice and click Create Invoice." data-id="Klik Create Invoice -> Pilih Regular Invoice dan klik Create Invoice.">Click <strong>Create Invoice</strong> -> Select <strong>Regular Invoice</strong> and click <strong>Create Invoice</strong>.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-check"></i> <span data-en="Click Confirm -> If paid, click Pay -> Create Payment." data-id="Klik Confirm -> Jika dibayar, klik Pay -> Create Payment.">Click <strong>Confirm</strong> -> If the invoice is paid, click <strong>Pay</strong> -> <strong>Create Payment</strong>.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-print"></i> <span data-en="To print the invoice, click Print." data-id="Untuk cetak invoice, klik Print.">To print the invoice, click <strong>Print</strong>.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="replenishment" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-orange-700">5. Inventory Replenishment <br><span class="text-slate-400 font-medium text-3xl" data-en="Restocking Shop from Factory" data-id="Restock Toko dari Pabrik">Restocking Shop from Factory</span></h1>
+                    
+                    <div class="step-card">
+                        <div class="badge-step" data-en="REPLENISHMENT STEPS" data-id="TAHAPAN STOK ULANG">REPLENISHMENT STEPS</div>
+                        <div class="space-y-4 text-slate-700">
+                            <div class="step-item"><span class="step-number">1</span><p data-en="Navigate to Inventory -> Operations -> Replenishment." data-id="Buka Inventory -> Operations -> Replenishment.">Navigate to <code>Inventory -> Operations -> Replenishment</code>.</p></div>
+                            <div class="step-item"><span class="step-number">2</span><p data-en="Search/Type the product or variant to be restocked. Note the following columns:" data-id="Cari/Ketik produk atau varian yang akan direstock. Perhatikan kolom-kolom berikut:">Search/Type the product or variant to be restocked. Note the following columns:</p></div>
+                            
+                            <div class="sub-step-box bg-orange-50 border-orange-100 text-orange-950">
+                                <div class="sub-step-item"><i class="fas fa-hand-holding"></i> <span data-en="On Hand: Current stock available in the shop." data-id="On Hand: Stok yang tersedia saat ini di toko."><strong>On Hand:</strong> Current stock available in the shop.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-chart-line"></i> <span data-en="Forecast: Projected stock (On Hand minus items to be sold/shipped)." data-id="Forecast: Proyeksi stok (On Hand dikurangi item yang akan dijual/dikirim)."><strong>Forecast:</strong> Projected stock (On Hand minus items to be sold/shipped).</span></div>
+                                <div class="sub-step-item"><i class="fas fa-arrows-alt-h"></i> <span data-en="Min & Max: Minimum and maximum stock limits for the shop." data-id="Min & Max: Batas stok minimum dan maksimum untuk toko."><strong>Min & Max:</strong> Minimum and maximum stock limits for the shop.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-shopping-cart"></i> <span data-en="To Order: Amount to be ordered (Max - On Hand)." data-id="To Order: Jumlah yang akan diorder (Max - On Hand)."><strong>To Order:</strong> Amount to be ordered (Max - On Hand).</span></div>
+                            </div>
+
+                            <div class="step-item"><span class="step-number">3</span><p data-en="Fill in the amount you want to order in the To Order column or leave the default." data-id="Isi jumlah yang ingin diorder di kolom To Order atau biarkan default.">Fill in the amount you want to order in the <strong>To Order</strong> column or leave the default.</p></div>
+                            <div class="step-item"><span class="step-number">4</span><p data-en="Check the box for every item you want to order from the factory." data-id="Centang kotak untuk setiap item yang ingin diorder dari pabrik.">Check the box for every item you want to order from the factory.</p></div>
+                            <div class="step-item"><span class="step-number">5</span><p data-en="Click Replenish (top center) and select Order." data-id="Klik Replenish (atas tengah) dan pilih Order.">Click <strong>Replenish</strong> (top center) and select <strong>Order</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">6</span><p data-en="Receiving at Shop: Once the factory sends the goods, the shop must receive them:" data-id="Penerimaan di Toko: Setelah pabrik mengirim barang, toko harus menerimanya di sistem:"><strong>Receiving at Shop:</strong> Once the factory sends the goods, the shop must receive them in the system:</p></div>
+                            
+                            <div class="sub-step-box bg-slate-50 border-slate-200">
+                                <div class="sub-step-item">
+                                    <i class="fas fa-sign-in-alt text-orange-500"></i>
+                                    <p data-en="Navigate to Inventory -> Operations -> Receipts." data-id="Buka Inventory -> Operations -> Receipts.">Navigate to <code>Inventory -> Operations -> Receipts</code>.</p>
+                                </div>
+                                <div class="sub-step-item">
+                                    <i class="fas fa-check-circle text-orange-500"></i>
+                                    <p data-en="Find the receipt document, click it, and click Validate." data-id="Cari dokumen receipt, klik dokumen tersebut, dan klik Validate.">Find the receipt document, click it, and click <strong>Validate</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="factory-delivery" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-amber-700">6. Factory Delivery to Shop</h1>
+                    
+                    <div class="step-card">
+                        <div class="badge-step" data-en="DELIVERY STEPS" data-id="TAHAPAN PENGIRIMAN">DELIVERY STEPS</div>
+                        <div class="space-y-5 text-slate-700">
+                            <div class="step-item"><span class="step-number">1</span><p data-en="Navigate to Inventory -> Operations -> Delivery." data-id="Buka Inventory -> Operations -> Delivery.">Navigate to <code>Inventory -> Operations -> Delivery</code>.</p></div>
+                            <div class="step-item"><span class="step-number">2</span><p data-en="Find the delivery document and click it." data-id="Cari dokumen delivery dan klik dokumen tersebut.">Find the delivery document and click it.</p></div>
+                            <div class="step-item"><span class="step-number">3</span><p data-en="Click Validate." data-id="Klik Validate.">Click <strong>Validate</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">4</span><p data-en="Print the Surat Jalan or Packing List if needed." data-id="Cetak Surat Jalan atau Packing List jika diperlukan.">Print the <strong>Surat Jalan</strong> or <strong>Packing List</strong> if needed.</p></div>
+                            <div class="step-item"><span class="step-number">5</span><p data-en="Inform the shop staff that the goods have been sent." data-id="Informasikan staf toko bahwa barang sudah dikirim.">Inform the shop staff that the goods have been sent.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Scrap -->
+                <div id="scrap" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-rose-700">7. Scrap Process <br><span class="text-slate-400 font-medium text-3xl" data-en="Removing Items from Inventory" data-id="Penghapusan Barang dari Stok">Removing Items from Inventory</span></h1>
+                    
+                    <div class="step-card">
+                        <div class="badge-step" data-en="SCRAP WORKFLOW" data-id="ALUR SCRAP">SCRAP WORKFLOW</div>
+                        <p class="text-slate-600 mb-8 italic text-lg leading-relaxed" data-en="Use this to remove goods from the system outside of normal transactions (e.g., the use of solar/fuel)." data-id="Gunakan ini untuk menghapus barang dari sistem di luar transaksi normal (misal: penggunaan solar/bahan bakar).">Use this to remove goods from the system outside of normal transactions (e.g., the use of solar/fuel).</p>
+                        <div class="space-y-4 text-slate-700">
+                            <div class="step-item"><span class="step-number">1</span><p data-en="Navigate to Inventory -> Operations -> Scrap." data-id="Buka Inventory -> Operations -> Scrap.">Navigate to <code>Inventory -> Operations -> Scrap</code>.</p></div>
+                            <div class="step-item"><span class="step-number">2</span><p data-en="Click New." data-id="Klik New.">Click <strong>New</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">3</span><p data-en="Select the Product." data-id="Pilih Product.">Select the <strong>Product</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">4</span><p data-en="Enter the Quantity." data-id="Masukkan Quantity.">Enter the <strong>Quantity</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">5</span><p data-en="In the Scrap Location, select Virtual Locations/Internal Use." data-id="Di Scrap Location, pilih Virtual Locations/Internal Use.">In the <strong>Scrap Location</strong>, select <strong>Virtual Locations/Internal Use</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">6</span><p data-en="Enter the Scrap Reason (reason for removal) if needed." data-id="Masukkan Scrap Reason (alasan penghapusan) jika diperlukan.">Enter the <strong>Scrap Reason</strong> (reason for removal) if needed.</p></div>
+                            <div class="step-item"><span class="step-number">7</span><p data-en="Click Validate." data-id="Klik Validate.">Click <strong>Validate</strong>.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Inventory Adjustment -->
+                <div id="inventory-adj" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-amber-700">8. Inventory Adjustment <br><span class="text-slate-400 font-medium text-3xl" data-en="Manual Quantity Updates" data-id="Update Kuantitas Manual">Manual Quantity Updates</span></h1>
+                    
+                    <div class="step-card">
+                        <div class="badge-step" data-en="ADJUSTMENT STEPS" data-id="TAHAPAN PENYESUAIAN">ADJUSTMENT STEPS</div>
+                        <p class="text-slate-600 mb-8 italic text-lg leading-relaxed" data-en="Use this to change system quantities manually without a transaction." data-id="Gunakan ini untuk mengubah kuantitas sistem secara manual tanpa transaksi.">Use this to change system quantities manually without a transaction.</p>
+                        <div class="space-y-4 text-slate-700">
+                            <div class="step-item"><span class="step-number">1</span><p data-en="Navigate to Inventory -> Operations -> Physical Inventory." data-id="Buka Inventory -> Operations -> Physical Inventory.">Navigate to <code>Inventory -> Operations -> Physical Inventory</code>.</p></div>
+                            <div class="step-item"><span class="step-number">2</span><p data-en="Click New if the product isn't listed; otherwise, search for existing products." data-id="Klik New jika produk tidak terdaftar; jika sudah ada, cari produk tersebut.">Click <strong>New</strong> if the product isn't listed; otherwise, search for existing products.</p></div>
+                            <div class="step-item"><span class="step-number">3</span><p data-en="Fill in the required details:" data-id="Lengkapi rincian yang diperlukan:">Fill in the required details:</p></div>
+                            
+                            <div class="sub-step-box bg-slate-50 border-slate-200">
+                                <div class="sub-step-item"><i class="fas fa-map-marker-alt text-slate-400"></i> <span data-en="Location: Location of the goods." data-id="Location: Lokasi barang."><strong>Location:</strong> Location of the goods.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-cube text-slate-400"></i> <span data-en="Product: The product to adjust." data-id="Product: Produk yang disesuaikan."><strong>Product:</strong> The product to adjust.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-hashtag text-slate-400"></i> <span data-en="Lot/Serial Number: If product needs a code." data-id="Lot/Serial Number: Jika produk membutuhkan kode."><strong>Lot/Serial Number:</strong> If product needs a code.</span></div>
+                                <div class="sub-step-item"><i class="fas fa-sort-numeric-up text-slate-400"></i> <span data-en="Counted Quantity: Actual physical count." data-id="Counted Quantity: Hitungan fisik asli."><strong>Counted Quantity:</strong> Actual physical count.</span></div>
+                            </div>
+
+                            <div class="step-item"><span class="step-number">4</span><p data-en="Click Apply All." data-id="Klik Apply All.">Click <strong>Apply All</strong>.</p></div>
+                            <div class="step-item"><span class="step-number">5</span><p data-en="Enter the Inventory Reason for the adjustment." data-id="Masukkan Inventory Reason untuk penyesuaian tersebut.">Enter the <strong>Inventory Reason</strong> for the adjustment.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="accounting" class="content-section">
+                    <h1 class="text-5xl font-black text-slate-900 mb-10 tracking-tight text-indigo-700" data-en="Accounting and Security" data-id="Akuntansi dan Keamanan">Accounting and Security</h1>
+                    
+                    <div class="step-card">
+                   
+
+                    <div class="step-card bg-slate-900 text-white border-0">
+                        <div class="badge-step bg-blue-600 mb-6" data-en="ACCOUNT SECURITY" data-id="KEAMANAN AKUN">ACCOUNT SECURITY</div>
+                        <h3 class="text-xl font-bold mb-8" data-en="Change Password" data-id="Ganti Kata Sandi">Change Password</h3>
+                        <div class="space-y-4">
+                            <div class="step-item"><span class="step-number bg-white text-slate-900">1</span><p data-en="Click the Profile Logo (top right)." data-id="Klik Logo Profil (pojok kanan atas).">Click the <strong>Profile Logo</strong> (top right).</p></div>
+                            <div class="step-item"><span class="step-number bg-white text-slate-900">2</span><p data-en="Click Preferences." data-id="Klik Preferences.">Click <strong>Preferences</strong>.</p></div>
+                            <div class="step-item"><span class="step-number bg-white text-slate-900">3</span><p data-en="Click Account Security." data-id="Klik Account Security.">Click <strong>Account Security</strong>.</p></div>
+                            <div class="step-item"><span class="step-number bg-white text-slate-900">4</span><p data-en="Click Change Password." data-id="Klik Change Password.">Click <strong>Change Password</strong>.</p></div>
+                            <div class="step-item"><span class="step-number bg-white text-slate-900">5</span><p data-en="Enter your Current Password and click Confirm Password." data-id="Masukkan Kata Sandi Saat Ini dan klik Confirm Password.">Enter your <strong>Current Password</strong> and click <strong>Confirm Password</strong>.</p></div>
+                            <div class="step-item"><span class="step-number bg-white text-slate-900">6</span><p data-en="Enter your New Password and click Change Password." data-id="Masukkan Kata Sandi Baru dan klik Change Password.">Enter your <strong>New Password</strong> and click <strong>Change Password</strong>.</p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="mt-20 border-t border-slate-200 p-20 text-center text-slate-400 text-[11px] font-black tracking-[0.4em] uppercase">
+                &copy; 2026 PT ASIANTEX INDONESIA | Odoo 18 Framework Visual Guide
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.innerText = el.getAttribute('data-' + lang);
+            });
+            
+            document.querySelectorAll('.lang-opt').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const target = document.getElementById(id);
+            if(target) target.classList.add('active');
+            
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeLink = Array.from(document.querySelectorAll('.sidebar-link')).find(link => {
+                const attr = link.getAttribute('onclick');
+                return attr && attr.includes(`'${id}'`);
+            });
+            if(activeLink) activeLink.classList.add('active');
+
+            window.scrollTo(0, 0);
+            if(window.innerWidth < 1024) {
+                document.getElementById('sidebar').classList.add('-translate-x-full');
+            }
+        }
+
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+        });
+        window.onload = () => setLanguage('en');
+    </script>
+</body>
+</html>
